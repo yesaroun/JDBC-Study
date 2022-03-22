@@ -1,0 +1,18 @@
+/*========================
+ 	MemberDAO.java
+========================*/
+
+// 데이터를 입력하는 기능 → insert
+
+// 인원 수를 확인하는 기능
+// 즉, 대상 테이블(TBL_MEMBER)의 레코드를 카운팅 기능 → SELECT
+
+// 전체 리스트를 조회하는 기능
+// 즉, 대상 테이블(TBL_MEMEBER)의 데이터를 조회하는 기능
+
+package com.test;
+
+public class MemeberDAO
+{
+	
+}

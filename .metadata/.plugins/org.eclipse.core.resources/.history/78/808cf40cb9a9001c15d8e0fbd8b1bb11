@@ -1,0 +1,10 @@
+/*========================
+ 	MemberDTO.java
+========================*/
+
+package com.test;
+
+public class MemeberDTO
+{
+	// 주요 속성 구성
+}

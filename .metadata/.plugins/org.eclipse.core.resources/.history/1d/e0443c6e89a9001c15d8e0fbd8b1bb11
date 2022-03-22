@@ -1,0 +1,39 @@
+/*=======================================
+ * Test005.java
+ * - 테이블 내의 데이터 읽어오기
+ =======================================*/
+
+package com.test;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.util.DBConn;
+
+public class Test005
+{
+	public static void main(String[] args) throws ClassNotFoundException, SQLException
+	{
+		Connection conn = DBConn.getConnection();
+		
+		if (conn != null)
+		{
+			System.out.println("데이터베이스 연결 성공~!!!");
+			
+			try
+			{
+				// 작업 객체 생성
+				Statement stmt = conn.createStatement();
+				
+			} catch (Exception e)
+			{
+				System.out.println(e.toString());
+			}
+		}
+		else
+		{
+			System.out.println("데이터베이스 연결 실패~!!!");
+		}
+	}
+}

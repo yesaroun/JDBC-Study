@@ -1,0 +1,11 @@
+/*============================
+ 	DBConn.java
+ 	- 예외 처리 throws
+============================*/
+
+package com.util;
+
+public class DBConn
+{
+	
+}

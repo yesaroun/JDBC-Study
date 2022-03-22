@@ -1,0 +1,31 @@
+// DTO : GETTER, SETTER (속성만)
+package com.test;
+
+public class MemberDTO	
+{
+	private static int sid;
+	private static String name;
+	private static String tel;
+	
+	
+
+	public static String getName()
+	{
+		return name;
+	}
+	public static void setName(String name)
+	{
+		MemberDTO.name = name;
+	}
+	public static String getTel()
+	{
+		return tel;
+	}
+	public static void setTel(String tel)
+	{
+		MemberDTO.tel = tel;
+	}
+	
+
+	
+}

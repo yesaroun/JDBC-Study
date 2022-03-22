@@ -1,0 +1,15 @@
+/* =================================
+ * Test003.java
+ * - 데이터베이스 연결 실습
+ * - 데이터 입력 실습
+ */
+
+package com.test;
+
+public class Test003
+{
+	public static void main(String[] args)
+	{
+		
+	}
+}
