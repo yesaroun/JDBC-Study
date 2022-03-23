@@ -24,7 +24,7 @@ public class ScoreDAO
 		Statement stmt = conn.createStatement();
 		
 		String sql = String.format("INSERT INTO TBL_SCORE(SID, NAME, KOR, ENG, MAT)"
-				+ " VALUES(SCORESEQ.NEXTVAL, %s, %d, %d, %d)", dto.getName(), dto.getKor(), dto.getEng(), dto.getMat());
+				+ " VALUES(SCORESEQ.NEXTVAL, '%s', %d, %d, %d)", dto.getName(), dto.getKor(), dto.getEng(), dto.getMat());
 		
 		result = stmt.executeUpdate(sql);
 		
@@ -53,7 +53,7 @@ public class ScoreDAO
 		
 		return result;
 	}
-	
+	/*
 	public int sum() throws SQLException 
 	{
 		int result = 0;
@@ -95,17 +95,37 @@ public class ScoreDAO
 		
 		return result;
 	} // end avg()
-	
-	public ArrayList<ScoreDTO> lists()
+	*/
+	public ArrayList<ScoreDTO> lists() throws SQLException
 	{
 		ArrayList<ScoreDTO> result = new ArrayList<ScoreDTO>();
 		
 		Statement stmt = conn.createStatement();
 		
 		String sql = "SELECT SID, NAME, KOR, ENG, MAT, KOR+ENG+MAT AS SUM"
-				 + ", (KOR+ENG+MAT)/3 AS AVG  FROM TBL_SCORE";
+				 + ", (KOR+ENG+MAT)/3 AS AVG  FROM TBL_SCORE ORDER BY SID";
 		
-		ResultSet rs = stmt.executeQuery(sql)
+		ResultSet rs = stmt.executeQuery(sql);
+		
+		while (rs.next())
+		{
+			ScoreDTO dto = new ScoreDTO();
+			
+			dto.setSid(rs.getString("SID"));
+			dto.setName(rs.getString("NAME"));
+			dto.setKor(rs.getInt("KOR"));
+			dto.setEng(rs.getInt("ENG"));
+			dto.setMat(rs.getInt("MAT"));
+			dto.setSum(rs.getInt("SUM"));
+			dto.setAvg(rs.getInt("AVG"));
+			
+			result.add(dto);
+			
+		}
+		rs.close();
+		stmt.close();
+		
+		return result;
 	}
 	
 	

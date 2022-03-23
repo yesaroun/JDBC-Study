@@ -26,7 +26,73 @@
 */
 package com.test;
 
+import java.util.Scanner;
+
+import com.util.DBConn;
+
 public class ScoreMain
 {
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		try
+		{
+			ScoreDAO dao = new ScoreDAO();
+			
+			int count = dao.count();
+			
+			do
+			{
+				System.out.printf("%d번 학생 성적 입력(이름 국어 영어 수학) :", ++count);
+				String name = sc.next();
+				
+				if(name.equals("."))
+					break;
+				
+				ScoreDTO dto = new ScoreDTO();
+				dto.setName(name);
+				
+				int kor = sc.nextInt();
+				int eng = sc.nextInt();
+				int mat = sc.nextInt();
+				
+				dto.setKor(kor);
+				dto.setEng(eng);
+				dto.setMat(mat);
+				
+				dao.add(dto);
+				
+			} while (true);
+			
+			System.out.println();
+			System.out.println("--------------------------------------------------------");
+			System.out.println("번호	이름	국어	영어	수학	총점	평균");
+			System.out.println("--------------------------------------------------------");
+			
+			for (ScoreDTO obj : dao.lists())
+			{
+				System.out.printf("%2s %6s %10d %8d %5d %5d %5d %n"
+						        , obj.getSid(), obj.getName(), obj.getKor(), obj.getEng(), obj.getMat()
+						        , obj.getSum(), obj.getAvg());
+			}
+			System.out.println("--------------------------------------------------------");
 
+			
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		finally 
+		{
+			try
+			{
+				DBConn.close();
+				System.out.println("프로그램 종료");
+			} catch (Exception e2)
+			{
+				System.out.println(e2.toString());
+			}
+		}
+	}
 }

@@ -4,6 +4,7 @@ public class ScoreDTO
 {
 	private String sid, name;
 	private int kor, eng, mat;
+	private int sum, avg;
 
 	public String getSid()
 	{
@@ -44,6 +45,22 @@ public class ScoreDTO
 	public void setMat(int mat)
 	{
 		this.mat = mat;
+	}
+	public int getSum()
+	{
+		return sum;
+	}
+	public void setSum(int sum)
+	{
+		this.sum = sum;
+	}
+	public int getAvg()
+	{
+		return avg;
+	}
+	public void setAvg(int avg)
+	{
+		this.avg = avg;
 	}
 	
 	
