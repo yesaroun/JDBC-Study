@@ -77,11 +77,19 @@ public class ScoreDAO
 	{
 		ArrayList<ScoreDTO> result = new ArrayList<ScoreDTO>();
 		Statement stmt = conn.createStatement();
-		String sql = String.format("SELECT SID, NAME, ENG, MAT, TOT, AVG"
-				               + ", RANK  FROM (    SELECT SID, NAME, KOR, ENG, MAT "
-				               + ", (KOR + ENG + MAT) AS TOT , (KOR + ENG + MAT)/3 AS AVG "
-				               + ", RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK"
-				               + " FROM TBL_SCORE) WHERE NAME = '%s'", name);
+		//String sql = String.format("SELECT SID, NAME, ENG, MAT, TOT, AVG, RANK"
+		String sql = String.format("SELECT SID, NAME, KOR, ENG, MAT, TOT, AVG, RANK"
+								+ " FROM"
+								+ " (SELECT SID, NAME, KOR, ENG, MAT"
+								+ ", (KOR + ENG + MAT) AS TOT"
+								+ ", (KOR + ENG + MAT)/3 AS AVG"
+								+ ", RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK"
+				               + " FROM TBL_SCORE"
+				               + ") WHERE NAME = '%s'", name);
+		// 테스트
+		//System.out.println(sql);
+		// 에이~ 테스트 해 볼 필요 없네 ㅎ
+		
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next())
 		{
@@ -110,11 +118,13 @@ public class ScoreDAO
 	{
 		ArrayList<ScoreDTO> result = new ArrayList<ScoreDTO>();
 		Statement stmt = conn.createStatement();
-		String sql = String.format("SELECT SID, NAME, ENG, MAT, TOT, AVG"
-				               + ", RANK  FROM (    SELECT SID, NAME, KOR, ENG, MAT "
-				               + ", (KOR + ENG + MAT) AS TOT , (KOR + ENG + MAT)/3 AS AVG "
-				               + ", RANK() OVER(ORDER BY (KOR+ENG+MAT) DESC) AS RANK"
-				               + " FROM TBL_SCORE) WHERE NAME = %d", sid);
+		String sql = String.format("SELECT SID, NAME, KOR, ENG, MAT, TOT, AVG, RANK"
+	            + " FROM"
+	            + " ( SELECT SID, NAME ,KOR, ENG, MAT , (KOR + ENG + MAT) AS TOT"
+	            + " , (KOR + ENG + MAT)/3 AS AVG"
+	            + " , RANK()OVER(ORDER BY (KOR+ENG+MAT)DESC) AS RANK"
+	            + " FROM TBL_SCORE)"
+	            + " WHERE SID = %d" , sid );
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next())
 		{
@@ -131,6 +141,7 @@ public class ScoreDAO
 			
 			result.add(dto);
 		}
+		
 		rs.close();
 		stmt.close();
 		
@@ -157,9 +168,51 @@ public class ScoreDAO
 	
 	// 데이터 수정 담당 메소드 → 매개변수의 유형 check~!!! 
 	//(sid가 아니라 ScoreDTO를 다 받아야 한다. 누구를에 목적을 두고 하는데 그거는 이 메소드가 할일이 아니고 번호 검색 메소드가 할일이다 그러면 여기는 변경될 값을 이름, 국어점수~ 이렇게 갱신할 값을 받아야한다)
-	public modify(ScoreDTO dto)
+	public int modify(ScoreDTO dto) throws SQLException
 	{
+		int result = 0;
+		
+		Statement stmt = conn.createStatement();
+		String sql = String.format("UPDATE TBL_SCORE   SET NAME = '%s', KOR=%d, ENG=%d, MAT=%d WHERE SID = %s"
+						, dto.getName(), dto.getKor(), dto.getEng(), dto.getMat(), dto.getSid());
+		result = stmt.executeUpdate(sql);
+		stmt.close();
+		
+		return result;
+	}
+	
+	// 데이터 삭제 담당 메소드
+	public int remove(int sid) throws SQLException
+	{
+		int result = 0;
+		
+		Statement stmt = conn.createStatement();
+		String sql = String.format("DELETE  FROM TBL_SCORE WHERE SID = %d", sid);
+		result = stmt.executeUpdate(sql);
+		stmt.close();
+		
+		return result;
+	}
+	
+	// 데이터베이스 연결 종료 담당 메소드
+	public void close() throws SQLException
+	{
+		DBConn.close();
 		
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
