@@ -145,7 +145,19 @@
 
 package com.test;
 
+import java.util.Scanner;
+
 public class MemberMain
 {
-
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		MemberProcess prc = new MemberProcess();
+		
+		// 
+		//prc.memberInsert();
+		
+		prc.membeerSists();
+		
+	}
 }

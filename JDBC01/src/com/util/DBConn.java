@@ -26,8 +26,8 @@ public class DBConn
 		if (dbConn == null)
 		{
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			//-- 『localhost』 는 오라클 서버의 ip 주소를 기재하는 부분
-			//	 『1521』 은 오라클 리스너 Port Number
+			//-- 『localhost』 는 오라클 서버의 ip 주소를 기재하는 부분(로컬아니면 ip번호 입력)
+			//	 『1521』 은 오라클 리스너 Port Number(회사에서 다른 포트번호 할 수 도 있다)
 			//	  『xe』 는 오라클 SID(Express Edition 의 SID는 xe)
 			
 			String user = "scott";

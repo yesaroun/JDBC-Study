@@ -145,7 +145,35 @@
 
 package com.test;
 
+import java.util.Scanner;
+
 public class MemberMain
 {
+	public static void main(String[] args)
+	{
+		Process prc = new Process();
+		Scanner sc = new Scanner(System.in);
+		
+		do
+		{
+			System.out.println("=====[ 직원 관리 ]======");
+			System.out.println("1. 직원 정보 입력");
+			System.out.println("2. 직원 전체 출력");
+			System.out.println("	- 사번 정렬");
+			System.out.println("	- 이름 정렬");
+			System.out.println("	- 부서 정렬");
+			System.out.println("	- 직위 정렬");
+			System.out.println("	- 급여 내림차순 정렬");
+			System.out.println("3. 직원 검색 출력");
+			System.out.println("	- 사번 검색");
+			System.out.println("	- 이름 검색");
+			System.out.println("	- 부서 검색");
+			System.out.println("	- 직위 검색");
+			System.out.println("4. 직원 정보 수정");
+			System.out.println("5. 직원 정보 삭제");
+			System.out.println("=========================");
+			System.out.println(">> 메뉴 선태(1~5, -1 종료) : ");
 
+		} while (true);
+	}
 }
