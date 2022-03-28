@@ -127,7 +127,7 @@ public class MemberProcess
 	}// end memberInsert()
 	
 	// 직원 전체 출력 메소드 정의
-	public void membeerSists()
+	public void memberLists()
 	{
 		Scanner sc = new Scanner(System.in);
 		
@@ -177,7 +177,7 @@ public class MemberProcess
 			ArrayList<MemberDTO> memList = dao.lists(key);
 			for (MemberDTO dto : memList)
 			{
-				System.out.printf("%5d  %4s  %14s  %10s  %4s  %13s  %3s  %2s  %,10d  %,10d  %,10d\n"
+				System.out.printf("%5d  %4s  %14s  %10s  %4s  %13s  %3s  %2s  %10d  %10d  %10d\n"
 						, dto.getEmpId(), dto.getEmpName(), dto.getSsn(), dto.getIbsaDate()
 						, dto.getCityName(), dto.getTel(), dto.getBuseoName(), dto.getJikwiName()
 						, dto.getBasicPay(), dto.getSudang(), dto.getPay());
@@ -231,19 +231,19 @@ public class MemberProcess
 			switch (menu)
 			{
 			case 1:
-				System.out.println("사번을 입력하세요 : ");
+				System.out.print("사번을 입력하세요 : ");
 				key="EMP_ID";
 				break;
 			case 2:
-				System.out.println("이름을 입력하세요 : ");
+				System.out.print("이름을 입력하세요 : ");
 				key="EMP_NAME";
 				break;
 			case 3:
-				System.out.println("부서를 입력하세요 : ");
+				System.out.print("부서를 입력하세요 : ");
 				key="BUSEO_NAME";
 				break;
 			case 4:
-				System.out.println("직위를 입력하세요 : ");
+				System.out.print("직위를 입력하세요 : ");
 				key="JIKWI_NAME";
 				break;
 			}
@@ -260,7 +260,7 @@ public class MemberProcess
 			ArrayList<MemberDTO> memList = dao.searchLists(key, value);
 			for (MemberDTO dto : memList)
 			{
-				System.out.printf("%5d  %4s  %14s  %10s  %4s  %13s  %3s  %2s  %,10d  %,10d  %,10d\\n"
+				System.out.printf("%5d  %4s  %14s  %10s  %4s  %13s  %3s  %2s  %,10d  %,10d  %,10d\n"
 							     , dto.getEmpId(), dto.getEmpName(), dto.getSsn(), dto.getIbsaDate()
 							     , dto.getCityName(), dto.getTel(), dto.getBuseoName(), dto.getJikwiName()
 							     , dto.getBasicPay(), dto.getSudang(), dto.getPay());
@@ -361,51 +361,51 @@ public class MemberProcess
 				
 				System.out.println();
 				System.out.println("직원 정보 수정-----------------------------------------------");
-				System.out.printf("기존 이름 : %s", mEmpName);
+				System.out.printf("기존 이름 : %s\n", mEmpName);
 				System.out.println("수정 이름 : ");
 				String empName = sc.next();
 				if(empName.equals("-"))
 					empName = mEmpName;
 				
 				
-				System.out.printf("기존 주민등록번호(yymmdd-nnnnnnn) : %s", mSsn);
+				System.out.printf("기존 주민등록번호(yymmdd-nnnnnnn) : %s\n", mSsn);
 				System.out.println("수정 주민등록번호(yymmdd-nnnnnnn) :");
 				String ssn = sc.next();
 				if(ssn.equals("-"))
 					ssn = mSsn;
 				
-				System.out.printf("기존 입사일(yyyy-mm-dd) : %s", mIbsaDate);
+				System.out.printf("기존 입사일(yyyy-mm-dd) : %s\n", mIbsaDate);
 				System.out.println("수정 입사일(yyyy-mm-dd) :");
 				String ibsaDate = sc.next();
 				if(ibsaDate.equals("-"))
 					ibsaDate = mIbsaDate;
 				
-				System.out.printf("기존 지역(%s) : %s", cityStr.toString(), mCityName);
+				System.out.printf("기존 지역(%s) : %s\n", cityStr.toString(), mCityName);
 				System.out.printf("수정 지역(%s) : ", cityStr.toString());
 				String cityName = sc.next();
 				if(cityName.equals("-"))
 					cityName = mCityName;
 				
-				System.out.printf("기존 전화번호 : %s", mTel);
+				System.out.printf("기존 전화번호 : %s\n", mTel);
 				System.out.println("수정 전화번호 : ");
 				String tel = sc.next();
 				if(tel.equals("-"))
 					tel = mTel;
 				
-				System.out.printf("기존 부서(%s) : %s", buseoStr.toString(), mBuseoName);
+				System.out.printf("기존 부서(%s) : %s\n", buseoStr.toString(), mBuseoName);
 				System.out.printf("수정 부서(%s) :", buseoStr);
 				String buseoName = sc.next();
 				if(buseoName.equals("-"))
 					buseoName = mBuseoName;
 				
-				System.out.printf("기존 직위(%s) : %s", jikwiStr.toString(), mJikwiName);
+				System.out.printf("기존 직위(%s) : %s\n", jikwiStr.toString(), mJikwiName);
 				System.out.printf("수정 직위(%s) : ", jikwiStr.toString());
 				String jikwiName = sc.next();
 				if(jikwiName.equals("-"))
 					jikwiName = mJikwiName;
 				
 				
-				System.out.printf("기존 기본급(최소 1800000 이상) : %d", mBasicPay);
+				System.out.printf("기존 기본급(최소 1800000 이상) : %d\n", mBasicPay);
 				System.out.printf("수정 기본급(최소 %d 이상) :", dao.searchBasicPay(jikwiName)); //(직위가 수정되어서 다시 조회하는거임)
 				String basicPayStr = sc.next();
 				int basicPay;
@@ -414,7 +414,7 @@ public class MemberProcess
 				else
 					basicPay = Integer.parseInt(basicPayStr);
 				
-				System.out.printf("기존 수당 : %d", mSudang);
+				System.out.printf("기존 수당 : %d\n", mSudang);
 				System.out.println("수정 수당 : ");
 				String sudangStr = sc.next();
 				int sudang;

@@ -43,7 +43,7 @@ public class Process
 			do
 			{
 				System.out.println();
-				System.out.printf("%d번 학생 성적 입력(이름 국어 영어 수학) : ", (++count));
+				System.out.printf("%d번 학생 성적 입력(이름 국어 영어 수학)(중단 . 입력) : ", (++count));
 				String name = sc.next();
 				
 				if(name.equals("."))

@@ -112,7 +112,7 @@ public class MemberDAO
 		ArrayList<MemberDTO> result = new ArrayList<MemberDTO>();
 		Statement stmt = conn.createStatement();
 		String sql = String.format("SELECT EMP_ID, EMP_NAME, SSN"
-				+ ", TO_CHAR(IBSADATE, 'YYYY-MM-DD') AS IBSADATE"
+				+ ", IBSADATE"
 				+ ", CITY_NAME, NVL(TEL, '번호없음') AS TEL, BUSEO_NAME, JIKWI_NAME"
 				+ ", BASICPAY, SUDANG, PAY"
 				+ " FROM EMPVIEW"
@@ -162,7 +162,8 @@ public class MemberDAO
 		
 		if (key.equals("EMP_ID"))
 		{
-			sql = String.format("SELECT EMP_ID, EMP_NAME, SSN, IBSADATE"
+			sql = String.format("SELECT EMP_ID, EMP_NAME, SSN"
+					 + ", IBSADATE"
 					 + ", CITY_NAME, NVL(TEL, '번호 없음') AS TEL"
 					 + ", BUSEO_NAME, JIKWI_NAME"
 					 + ", BASICPAY, SUDANG, PAY"
@@ -172,7 +173,8 @@ public class MemberDAO
 		} 
 		else
 		{
-			sql = String.format("SELECT EMP_ID, EMP_NAME, SSN, IBSADATE"
+			sql = String.format("SELECT EMP_ID, EMP_NAME, SSN"
+					 + ", IBSADATE"
 					 + ", CITY_NAME, NVL(TEL, '번호 없음') AS TEL"
 					 + ", BUSEO_NAME, JIKWI_NAME"
 					 + ", BASICPAY, SUDANG, PAY"
