@@ -122,7 +122,7 @@ public class ScoreMain
 			{
 				System.out.println(e.toString());
 			}
-			
+			sc.close();
 		} while (true);
 		
 	}

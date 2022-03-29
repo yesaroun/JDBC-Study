@@ -42,6 +42,7 @@ public class ScoreProcess
 			} while (true);
 			
 			dao.close();
+			sc.close();
 			
 		} catch (Exception e)
 		{
@@ -103,6 +104,7 @@ public class ScoreProcess
 				System.out.println("값이 존재하지 않습니다.");
 			
 			dao.close();
+			sc.close();
 			
 		} catch (Exception e)
 		{
@@ -157,7 +159,7 @@ public class ScoreProcess
 			
 			
 			dao.close();
-			
+			sc.close();
 		} catch (Exception e)
 		{
 			System.out.println(e.toString());
@@ -206,6 +208,7 @@ public class ScoreProcess
 				System.out.println("삭제할 대상이 존재하지 않습니다.");
 			
 			dao.close();
+			sc.close();
 			
 		} catch (Exception e)
 		{
