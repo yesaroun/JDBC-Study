@@ -1,7 +1,0 @@
-// DTO : GETTER, SETTER (속성만)
-package com.test;
-
-public class MemberDTO	
-{
-	
-}

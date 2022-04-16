@@ -1,7 +1,0 @@
-// 액션 처리하는 아이들만
-package com.test;
-
-public class MemberDTO	
-{
-	
-}
